@@ -1,6 +1,6 @@
 # Wrecking Ball
 
-This is muli-body simulation using libuipc.
+This is a multi-body simulation using libuipc.
 
 ![image](image.png)
 
