@@ -16,7 +16,9 @@ from asset_dir import AssetDir
 
 Timer.enable_all()
 Logger.set_level(Logger.Level.Warn)
-engine = Engine('cuda')
+
+workspace = AssetDir.output_path(__file__)
+engine = Engine('cuda', workspace)
 world = World(engine)
 config = Scene.default_config()
 config['dt'] = 0.01
