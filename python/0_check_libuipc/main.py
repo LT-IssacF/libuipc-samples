@@ -4,13 +4,13 @@ import time
 from pyuipc_loader import pyuipc
 from pyuipc import Engine, Logger
 from asset_dir import AssetDir
+from multiprocessing import Process, Queue
 
-finish = False
-def waiting():
+def waiting(q : Queue):
     symbols = ['|', '/', '-', '\\']
     i = 0
     while(True):
-        if(finish):
+        if(not q.empty()):
             break
         print('Waiting for cuda engine to initialize. ', end='')
         print(f' {symbols[i % len(symbols)]}', end='\r')
@@ -31,12 +31,16 @@ if __name__ == '__main__':
 * The first time to initialize the engine will take a while
   because the cuda kernels need to be compiled.
 ''')
+    # create a process to wait for the engine to initialize
+    Q = Queue()
+    p = Process(target=waiting, args=(Q,))
+    p.start()
 
-    t = threading.Thread(target=waiting)
-    t.start()
-    
     engine = Engine('cuda', AssetDir.output_path(__file__))
     
-    finish = True
-    t.join()
+    # signal the waiting process to stop
+    Q.put(1)
+    p.join()
+    
+    print('* Engine initialized.')
 
