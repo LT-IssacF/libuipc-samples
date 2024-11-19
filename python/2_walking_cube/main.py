@@ -2,137 +2,91 @@ import numpy as np
 import polyscope as ps
 from polyscope import imgui
 
-from asset_dir import AssetDir
 from pyuipc_loader import pyuipc
-from pyuipc import Vector3, Vector2, Transform, Logger, Matrix4x4
-from pyuipc import builtin
-from pyuipc.core import World, Scene, Engine, Animation
 from pyuipc import view
-
+from pyuipc import Logger, Timer
+from pyuipc import Vector3, Vector2, Transform, Quaternion, AngleAxis
+from pyuipc import builtin
+from pyuipc.core import *
 from pyuipc.geometry import *
 from pyuipc.constitution import *
 from pyuipc_utils.gui import *
-
+from pyuipc.unit import MPa, GPa
+from asset_dir import AssetDir
 
 Logger.set_level(Logger.Level.Warn)
-output_path = AssetDir.output_path(__file__)
 
-
-engine = Engine('cuda', output_path)
+workspace = AssetDir.output_path(__file__)
+engine = Engine('cuda', workspace)
 world = World(engine)
 
 config = Scene.default_config()
 dt = 0.02
 config['dt'] = dt
-config['contact']['d_hat'] = 0.05
-config['newton']['velocity_tol'] = 0.1
+config['gravity'] = [[0.0], [-9.8], [0.0]]
+config['contact']['friction']['enable'] = True
 scene = Scene(config)
 
 # friction ratio and contact resistance
-scene.contact_tabular().default_model(0.2, 1e9)
+scene.contact_tabular().default_model(0.5, 1.0 * GPa)
 default_element = scene.contact_tabular().default_element()
 
-# create constituiton
+# create constitution and contact model
 abd = AffineBodyConstitution()
-# create constraint
 rm = RotatingMotor()
-stc = SoftTransformConstraint()
 
-def process_surface(sc: SimplicialComplex):
-    label_surface(sc)
-    label_triangle_orient(sc)
-    return flip_inward_triangles(sc)
-
+# load cube mesh
 io = SimplicialComplexIO()
 cube_mesh = io.read(f'{AssetDir.tetmesh_path()}/cube.msh')
-cube_mesh = process_surface(cube_mesh)
+# label the surface, enable the contact
+label_surface(cube_mesh)
+# label the triangle orientation to export the correct surface mesh
+label_triangle_orient(cube_mesh)
+cube_mesh = flip_inward_triangles(cube_mesh)
 
-# move the cube up for 2.5 meters
+cube_object = scene.objects().create('cube_obj')
+
+abd.apply_to(cube_mesh, 10.0 * MPa)
+rm.apply_to(
+    cube_mesh, 
+    100.0, # constraint strength ratio
+    Vector3.UnitX(), # rotation axis
+    np.pi / 1.0 # rotation speed
+)
+
+# move the cube up by 2 units
 trans_view = view(cube_mesh.transforms())
 t = Transform.Identity()
-t.translate(Vector3.UnitY() * 2.5)
+t.translate(Vector3.UnitY() * 2)
 trans_view[0] = t.matrix()
 
-abd.apply_to(cube_mesh, 1e8) # 100 MPa
-default_element.apply_to(cube_mesh)
-# constraint the rotation
-rm.apply_to(cube_mesh, 100, motor_rot_vel=np.pi)
-cube_object = scene.objects().create('cube')
 cube_object.geometries().create(cube_mesh)
 
-pre_transform = Transform.Identity()
-pre_transform.scale(Vector3.Values([3, 0.1, 6]))
-
-io = SimplicialComplexIO(pre_transform)
-ground_mesh = io.read(f'{AssetDir.tetmesh_path()}/cube.msh')
-ground_mesh = process_surface(ground_mesh)
-ground_mesh.instances().resize(2)
-
-abd.apply_to(ground_mesh, 1e7) # 10 MPa
-default_element.apply_to(ground_mesh)
-stc.apply_to(ground_mesh, Vector2.Values([100.0, 100.0]))
-is_fixed = ground_mesh.instances().find(builtin.is_fixed)
-is_fixed_view = view(is_fixed)
-is_fixed_view[0] = 1 # fix the lower board
-is_fixed_view[1] = 0
-
-trans_view = view(ground_mesh.transforms())
-t = Transform.Identity()
-t.translate(Vector3.UnitZ() * 2)
-trans_view[0] = t.matrix()
-t.translate(Vector3.UnitZ() * -2.5 + Vector3.UnitY() * 1)
-trans_view[1] = t.matrix()
-
-ground_object = scene.objects().create('ground')
-ground_object.geometries().create(ground_mesh)
-
-ground_height = -1.0
-g = ground(ground_height)
-ground_object.geometries().create(g)
+ground_obj = scene.objects().create('ground')
+g = ground()
+ground_obj.geometries().create(g)
 
 animator = scene.animator()
 
-def cube_animation(info:Animation.UpdateInfo):
-    geo_slots = info.geo_slots()
-    geo_slot: SimplicialComplexSlot = geo_slots[0]
-    geo = geo_slot.geometry()
+def animate_cube(info:Animation.UpdateInfo): # animation function
+    # get all geometries attached to the object
+    geo_slots:list[GeometrySlot] = info.geo_slots()
+    geo:SimplicialComplex = geo_slots[0].geometry()
+
+    # by setting is_constrained to 1, the cube will be controlled by the animation
     is_constrained = geo.instances().find(builtin.is_constrained)
     view(is_constrained)[0] = 1
+
+    # using the RotatingMotor to animate the cube
     RotatingMotor.animate(geo, info.dt())
-    
 
-def ground_animation(info:Animation.UpdateInfo):
-    geo_slot: SimplicialComplexSlot = info.geo_slots()[0]
-    rest_geo_slot : SimplicialComplexSlot = info.rest_geo_slots()[0]
-    geo = geo_slot.geometry()
-    rest_geo = rest_geo_slot.geometry()
-    
-    is_constrained = geo.instances().find(builtin.is_constrained)
-    view(is_constrained)[1] = 1
-    
-    current_t = info.dt() * info.frame()
-    angular_velocity = np.pi # 180 degree per second
-    theta = angular_velocity * current_t
-    
-    T:Matrix4x4 = rest_geo.transforms().view()[1]
-    Y = np.sin(theta) * 0.4
-    T:Transform = Transform(T)
-    p = T.translation()
-    p[1] += Y
-    T = Transform.Identity()
-    T.translate(p)
-    
-    aim_trans = geo.instances().find(builtin.aim_transform)
-    view(aim_trans)[1] = T.matrix()
-
-animator.insert(cube_object, cube_animation)
-animator.insert(ground_object, ground_animation)
+animator.insert(cube_object, animate_cube)
 
 world.init(scene)
 sgui = SceneGUI(scene)
 
 ps.init()
-ps.set_ground_plane_height(ground_height)
+ps.set_ground_plane_height(0)
 tri_surf, _, _ = sgui.register()
 tri_surf.set_edge_width(1)
 

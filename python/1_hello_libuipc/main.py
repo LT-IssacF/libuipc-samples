@@ -21,7 +21,8 @@ workspace = AssetDir.output_path(__file__)
 engine = Engine('cuda', workspace)
 world = World(engine)
 config = Scene.default_config()
-config['dt'] = 0.01
+dt = 0.02
+config['dt'] = dt
 config['gravity'] = [[0.0], [-9.8], [0.0]]
 scene = Scene(config)
 
@@ -50,6 +51,8 @@ default_element.apply_to(base_mesh)
 label_surface(base_mesh)
 # label the triangle orientation to export the correct surface mesh
 label_triangle_orient(base_mesh)
+# flip the triangles inward for better rendering
+base_mesh = flip_inward_triangles(base_mesh)
 
 mesh1 = base_mesh.copy()
 pos_view = view(mesh1.positions())
@@ -72,7 +75,7 @@ world.init(scene)
 sgui = SceneGUI(scene)
 
 ps.init()
-tri_surf, _, _ = sgui.register()
+tri_surf, line_surf, point_surf = sgui.register()
 tri_surf.set_edge_width(1)
 
 run = False
@@ -84,7 +87,6 @@ def on_update():
     if(run):
         world.advance()
         world.retrieve()
-        Timer.report()
         sgui.update()
 
 ps.set_user_callback(on_update)
