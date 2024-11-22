@@ -26,6 +26,10 @@ def main():
     # create the new folder
     new_folder = this_folder / f'{max_number+1}_{args.name}'
     sh.copytree(temp_sim_0, new_folder)
+    
+    f = open(new_folder / 'README.md', 'w')
+    f.write(f'# {args.name}\n')
+    f.close()
 
 if __name__ == '__main__':
     main()
