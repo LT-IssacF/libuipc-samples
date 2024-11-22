@@ -40,11 +40,10 @@ stc = SoftTransformConstraint()
 
 def process_surface(sc: SimplicialComplex):
     label_surface(sc)
-    label_triangle_orient(sc)
-    return flip_inward_triangles(sc)
+    return sc
 
 io = SimplicialComplexIO()
-cube_mesh = io.read(f'{AssetDir.tetmesh_path()}/cube.msh')
+cube_mesh = io.read(f'{AssetDir.trimesh_path()}/cube.obj')
 cube_mesh = process_surface(cube_mesh)
 
 # move the cube up for 2.5 meters
