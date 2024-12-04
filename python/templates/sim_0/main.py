@@ -25,7 +25,7 @@ world = World(engine)
 
 config = Scene.default_config()
 config['dt'] = 0.01
-config['contact']['d_hat']              = 0.01
+config['contact']['d_hat'] = 0.01
 print(config)
 scene = Scene(config)
 

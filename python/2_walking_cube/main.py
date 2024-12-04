@@ -14,7 +14,7 @@ from pyuipc_utils.gui import *
 from pyuipc.unit import MPa, GPa
 from asset_dir import AssetDir
 
-Logger.set_level(Logger.Level.Warn)
+Logger.set_level(Logger.Level.Info)
 
 workspace = AssetDir.output_path(__file__)
 engine = Engine('cuda', workspace)

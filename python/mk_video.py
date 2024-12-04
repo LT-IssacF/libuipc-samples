@@ -27,15 +27,17 @@ def main():
     sorted_files = []
     for i in sorted(file_dict.keys()):
         sorted_files.append((i,file_dict[i]))
-        
-    # read the images
-    for i, f in sorted_files:
-        images.append(mio.v2.imread(f))
     
     # print the min and max number
     print(f'Number of images: {len(images)}')
     print(f'Min number: {sorted_files[0][0]}')
     print(f'Max number: {sorted_files[-1][0]}')
+    
+    # read the images
+    for i, f in sorted_files:
+        if(verbose):
+            print(f'Reading {f}')
+        images.append(mio.v2.imread(f))
     
     if(verbose):
         print(f'Image files:')

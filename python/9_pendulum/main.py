@@ -10,6 +10,7 @@ from pyuipc import builtin
 from pyuipc.core import *
 from pyuipc.geometry import *
 from pyuipc.constitution import *
+from pyuipc.unit import MPa
 from pyuipc_utils.gui import *
 
 from asset_dir import AssetDir
@@ -25,89 +26,78 @@ world = World(engine)
 
 config = Scene.default_config()
 config['dt'] = 0.01
-config['contact']['d_hat'] = 0.01
-config['newton']['velocity_tol'] = 0.1
-config['contact']['enable'] = True
+config['contact']['d_hat'] = 0.001
+config['gravity'] = [[0.0], [-9.8], [0.0]]
+config['line_search']['report_energy'] = True
 config['contact']['friction']['enable'] = False
 print(config)
 scene = Scene(config)
 
 # begin setup the scene
-t = Transform.Identity()
-t.rotate(AngleAxis(np.pi/2, Vector3.UnitX()))
-io = SimplicialComplexIO(t)
 
-# create constituiton
 abd = AffineBodyConstitution()
-# create constraint
 rm = RotatingMotor()
 scene.contact_tabular().default_model(0, 1e9)
 
-gear_obj = scene.objects().create('gear')
-gear_mesh = io.read(f'{AssetDir.trimesh_path()}/gear0/gear.obj')
-label_surface(gear_mesh)
-abd.apply_to(gear_mesh, 1e8) # 100 MPa
-rm.apply_to(gear_mesh, 100, motor_axis=Vector3.UnitZ(), motor_rot_vel=np.pi)
-gear_obj.geometries().create(gear_mesh)
+t = Transform.Identity()
+t.scale(0.5)
+io = SimplicialComplexIO(t)
 
-def gear_animation(info:Animation.UpdateInfo):
+arm_obj = scene.objects().create('arm')
+arm_mesh = io.read(f'{AssetDir.trimesh_path()}/pendulum/arm.obj')
+label_surface(arm_mesh)
+abd.apply_to(arm_mesh, 100 * MPa)
+rm.apply_to(arm_mesh, 100, motor_axis=Vector3.UnitZ(), motor_rot_vel=-0.2*np.pi)
+arm_obj.geometries().create(arm_mesh)
+
+def arm_animation(info:Animation.UpdateInfo):
     geo_slots = info.geo_slots()
     geo_slot: SimplicialComplexSlot = geo_slots[0]
     geo = geo_slot.geometry()
     is_constrained = geo.instances().find(builtin.is_constrained)
-    view(is_constrained)[0] = 1
-    RotatingMotor.animate(geo, info.dt())
     
-scene.animator().insert(gear_obj, gear_animation)
+    if(info.frame() <= 1):
+        view(is_constrained)[0] = 1
+        RotatingMotor.animate(geo, info.dt())
+    else:
+        view(is_constrained)[0] = 0
+    
+scene.animator().insert(arm_obj, arm_animation)
 
 pin_obj = scene.objects().create('pin')
-pin_mesh = io.read(f'{AssetDir.trimesh_path()}/gear0//pin.obj')
+pin_mesh = io.read(f'{AssetDir.trimesh_path()}/pendulum/pin-short.obj')
 label_surface(pin_mesh)
-abd.apply_to(pin_mesh, 1e8) # 100 MPa
+abd.apply_to(pin_mesh, 100 * MPa)
+t = Transform.Identity()
+t.translate(Vector3.UnitY() * -1)
+view(pin_mesh.transforms())[:] = t.matrix()
 is_fixed = pin_mesh.instances().find(builtin.is_fixed)
 view(is_fixed)[:] = 1
 pin_obj.geometries().create(pin_mesh)
 
-rail_obj = scene.objects().create('rail')
-rail_mesh = io.read(f'{AssetDir.trimesh_path()}/gear0/rail.obj')
-label_surface(rail_mesh)
-abd.apply_to(rail_mesh, 1e8) # 100 MPa
-t = Transform.Identity()
-t.translate(Vector3.UnitY() * -1.3)
-view(rail_mesh.transforms())[:] = t.matrix()
-rail_obj.geometries().create(rail_mesh)
-
-rail_guard_obj = scene.objects().create('rail_guard')
-rail_guard_mesh = io.read(f'{AssetDir.trimesh_path()}/gear0/rail-guard.obj')
-label_surface(rail_guard_mesh)
-abd.apply_to(rail_guard_mesh, 1e8) # 100 MPa
-view(rail_guard_mesh.transforms())[:] = t.matrix()
-is_fixed = rail_guard_mesh.instances().find(builtin.is_fixed)
-view(is_fixed)[:] = 1
-rail_guard_obj.geometries().create(rail_guard_mesh)
-
-ground_height = -1.36
-ground_obj = scene.objects().create('ground')
-ground_geo = ground(ground_height)
-ground_obj.geometries().create(ground_geo)
-
 # end setup the scene
 
 world.init(scene)
+world.retrieve()
 
 ps.init()
-ps.set_ground_plane_height(ground_height)
-ps.set_window_size(1600, 1280)
-
+ps.set_ground_plane_height(-5)
 sgui = SceneGUI(scene)
 tri_surf, lines, points = sgui.register()
 tri_surf.set_edge_width(1)
+
+sio = SceneIO(scene)
 
 run = False
 def on_update():
     global run
     if(imgui.Button('run & stop')):
         run = not run
+    if(imgui.Button('recover')):
+        world.recover(1)
+        world.retrieve()
+        sgui.update()
+        
     if(run):
         if(world.recover(world.frame() + 1)):
             world.retrieve()
@@ -117,7 +107,6 @@ def on_update():
             world.retrieve()
             world.dump()
             Timer.report()
-
         sgui.update()
 
 ps.set_user_callback(on_update)

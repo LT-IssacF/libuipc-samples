@@ -22,7 +22,7 @@ def process_surface(sc: SimplicialComplex):
     return sc
 
 Timer.enable_all()
-Logger.set_level(Logger.Level.Warn)
+Logger.set_level(Logger.Level.Info)
 workspace = AssetDir.output_path(__file__)
 folder = AssetDir.folder(__file__)
 
