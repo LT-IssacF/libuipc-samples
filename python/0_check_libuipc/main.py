@@ -6,6 +6,17 @@ from pyuipc import Engine, Logger
 from asset_dir import AssetDir
 from multiprocessing import Process, Queue
 
+from pyuipc import builtin
+from pyuipc import unit
+
+def print_sorted(uids):
+    uids = sorted(uids, key=lambda x: x['uid'])
+    for u in uids:
+        uid = u['uid']
+        name = u['name']
+        type = u['type']
+        print(f'uid: {uid}, name: {name}, type: {type}')
+
 def waiting(q : Queue):
     symbols = ['|', '/', '-', '\\']
     i = 0
@@ -22,7 +33,6 @@ def waiting(q : Queue):
         i+=1
         time.sleep(0.05)
         pass
-    
 
 if __name__ == '__main__':
     print(f'pyuipc version: {pyuipc.__version__}')
@@ -30,7 +40,30 @@ if __name__ == '__main__':
     print(f'tetmesh_path: {AssetDir.tetmesh_path()}')
     print(f'trimesh_path: {AssetDir.trimesh_path()}')
     print(f'this file output_path: {AssetDir.output_path(__file__)}')
+
+    print()
     
+    constitutions = builtin.ConstitutionUIDCollection.instance().to_json()
+    implicit_geomeries = builtin.ImplicitGeometryUIDCollection.instance().to_json()
+    
+    print('* UIPC INFO:')
+    print('-'*80)
+    print('constitutions:')
+    print_sorted(constitutions)
+    print('-'*80)
+    print('implicit_geomeries:')
+    print_sorted(implicit_geomeries)
+    print('-'*80)
+    print('units:')
+    print(f's={unit.s}')
+    print(f'm={unit.m}')
+    print(f'mm={unit.mm}')
+    print(f'km={unit.km}')
+    print(f'Pa={unit.Pa}')
+    print(f'kPa={unit.kPa}')
+    print(f'MPa={unit.MPa}')
+    print(f'GPa={unit.GPa}')
+
     Logger.set_level(Logger.Warn)
     
     print('''
