@@ -2,16 +2,13 @@ import numpy as np
 import polyscope as ps
 from polyscope import imgui
 
-from pyuipc_loader import pyuipc
-from pyuipc import view
-from pyuipc import Logger, Timer
-from pyuipc import Vector3, Vector2, Transform, Quaternion, AngleAxis
-from pyuipc import builtin
-from pyuipc.core import *
-from pyuipc.geometry import *
-from pyuipc.constitution import *
-from pyuipc_utils.gui import *
-from pyuipc.unit import MPa, GPa
+import uipc
+from uipc import Logger, Timer
+from uipc.core import Engine, World, Scene
+from uipc.geometry import tetmesh, label_surface, label_triangle_orient, flip_inward_triangles
+from uipc.constitution import AffineBodyConstitution
+from uipc.gui import SceneGUI 
+from uipc.unit import MPa, GPa
 from asset_dir import AssetDir
 
 Timer.enable_all()
@@ -55,13 +52,13 @@ label_triangle_orient(base_mesh)
 base_mesh = flip_inward_triangles(base_mesh)
 
 mesh1 = base_mesh.copy()
-pos_view = view(mesh1.positions())
+pos_view = uipc.view(mesh1.positions())
 # move the mesh up for 1 unit
-pos_view += Vector3.UnitY() * 1.5
+pos_view += uipc.Vector3.UnitY() * 1.5
 
 mesh2 = base_mesh.copy()
-is_fixed = mesh2.instances().find(builtin.is_fixed)
-is_fixed_view = view(is_fixed)
+is_fixed = mesh2.instances().find(uipc.builtin.is_fixed)
+is_fixed_view = uipc.view(is_fixed)
 is_fixed_view[:] = 1
 
 # create objects
