@@ -82,6 +82,10 @@ def animate_cube(info:Animation.UpdateInfo): # animation function
 animator.insert(cube_object, animate_cube)
 
 world.init(scene)
+
+scene.sanity_checker().report()
+
+
 sgui = SceneGUI(scene)
 
 ps.init()
