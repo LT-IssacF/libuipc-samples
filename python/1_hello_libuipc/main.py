@@ -1,17 +1,14 @@
 import numpy as np
 import polyscope as ps
 from polyscope import imgui
-
-from pyuipc_loader import pyuipc
-from pyuipc import view
-from pyuipc import Logger, Timer
-from pyuipc import Vector3, Vector2, Transform, Quaternion, AngleAxis
-from pyuipc import builtin
-from pyuipc.core import *
-from pyuipc.geometry import *
-from pyuipc.constitution import *
-from pyuipc_utils.gui import *
-from pyuipc.unit import MPa, GPa
+from uipc import view
+from uipc import Logger, Timer, Scene, Engine, World
+from uipc import Vector3, Vector2, Transform, Quaternion, AngleAxis
+from uipc import builtin
+from uipc.geometry import *
+from uipc.constitution import *
+from uipc.gui import SceneGUI
+from uipc.unit import MPa, GPa
 from asset_dir import AssetDir
 
 Timer.enable_all()

@@ -1,17 +1,15 @@
 import numpy as np
 import polyscope as ps
 from polyscope import imgui
-
 from asset_dir import AssetDir
-from pyuipc_loader import pyuipc
-from pyuipc import Vector3, Vector2, Transform, Logger, Matrix4x4
-from pyuipc import builtin
-from pyuipc.core import World, Scene, Engine, Animation
-from pyuipc import view
 
-from pyuipc.geometry import *
-from pyuipc.constitution import *
-from pyuipc_utils.gui import *
+from uipc import Vector3, Vector2, Transform, Logger, Matrix4x4
+from uipc import builtin
+from uipc.core import World, Scene, Engine, Animation
+from uipc import view
+from uipc.geometry import *
+from uipc.constitution import *
+from uipc.gui import *
 
 
 Logger.set_level(Logger.Level.Warn)

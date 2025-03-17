@@ -3,15 +3,14 @@ import numpy as np
 import polyscope as ps
 from polyscope import imgui
 
-from pyuipc_loader import pyuipc
-from pyuipc import view
-from pyuipc import Vector3, Vector2, Transform, Logger, Quaternion, AngleAxis, Timer
-from pyuipc import builtin
-from pyuipc.core import *
-from pyuipc.geometry import *
-from pyuipc.constitution import *
-from pyuipc.unit import MPa, GPa
-from pyuipc_utils.gui import *
+from uipc import view
+from uipc import Vector3, Vector2, Transform, Logger, Quaternion, AngleAxis, Timer
+from uipc import builtin
+from uipc.core import *
+from uipc.geometry import *
+from uipc.constitution import *
+from uipc.unit import MPa, GPa
+from uipc.gui import *
 
 from asset_dir import AssetDir
 
