@@ -2,16 +2,25 @@ import numpy as np
 import polyscope as ps
 from polyscope import imgui
 
-from pyuipc_loader import pyuipc
-from pyuipc import view
-from pyuipc import Logger, Timer
-from pyuipc import Vector3, Vector2, Transform, Quaternion, AngleAxis
-from pyuipc import builtin
-from pyuipc.core import *
-from pyuipc.geometry import *
-from pyuipc.constitution import *
-from pyuipc_utils.gui import *
-from pyuipc.unit import MPa, GPa, kPa
+# from pyuipc_loader import pyuipc
+# from pyuipc import view
+# from pyuipc import Logger, Timer
+# from pyuipc import Vector3, Vector2, Transform, Quaternion, AngleAxis
+# from pyuipc import builtin
+# from pyuipc.core import *
+# from pyuipc.geometry import *
+# from pyuipc.constitution import *
+# from pyuipc_utils.gui import *
+# from pyuipc.unit import MPa, GPa, kPa
+
+import uipc
+from uipc import Logger, Timer, Transform, Quaternion, Vector3, Vector2, view, builtin
+from uipc.core import Engine, World, Scene
+from uipc.geometry import tetmesh, label_surface, label_triangle_orient, flip_inward_triangles
+from uipc.geometry import SimplicialComplexIO
+from uipc.constitution import AffineBodyConstitution, NeoHookeanShell, DiscreteShellBending, ElasticModuli
+from uipc.gui import SceneGUI 
+from uipc.unit import MPa, GPa, kPa 
 
 from asset_dir import AssetDir
 
