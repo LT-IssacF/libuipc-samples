@@ -5,10 +5,9 @@ from uipc import view
 from uipc import Engine, World, Scene, Animation
 from uipc import Vector3, Vector2, Transform, Logger, Quaternion, AngleAxis
 from uipc import builtin
-
-from uipc.geometry import *
-from uipc.constitution import *
-from uipc.gui import *
+from uipc.geometry import GeometrySlot, SimplicialComplex, SimplicialComplexIO, pointcloud, linemesh, label_surface, label_triangle_orient, flip_inward_triangles, ground
+from uipc.constitution import AffineBodyConstitution, Particle, HookeanSpring, SoftPositionConstraint
+from uipc.gui import SceneGUI
 
 from asset_dir import AssetDir
 

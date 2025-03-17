@@ -5,10 +5,10 @@ from polyscope import imgui
 from uipc import view
 from uipc import Vector3, Vector2, Transform, Logger, Quaternion, AngleAxis
 from uipc import builtin
-from uipc.core import *
-from uipc.geometry import *
-from uipc.constitution import *
-from uipc.gui import *
+from uipc.core import Engine, World, Scene, ContactElement
+from uipc.geometry import GeometrySlot, SimplicialComplex, SimplicialComplexIO, ground, label_surface, label_triangle_orient, flip_inward_triangles
+from uipc.constitution import AffineBodyConstitution
+from uipc.gui import SceneGUI
 
 from asset_dir import AssetDir
 

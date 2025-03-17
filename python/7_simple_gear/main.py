@@ -3,13 +3,13 @@ import polyscope as ps
 from polyscope import imgui
 
 from uipc import view
-from uipc import Logger, Timer
+from uipc import Logger, Timer, Animation
 from uipc import Vector3, Vector2, Transform, Quaternion, AngleAxis
 from uipc import builtin
-from uipc.core import *
-from uipc.geometry import *
-from uipc.constitution import *
-from uipc.gui import *
+from uipc.core import Engine, World, Scene
+from uipc.geometry import GeometrySlot, SimplicialComplex, SimplicialComplexIO, ground, label_surface
+from uipc.constitution import AffineBodyConstitution, RotatingMotor
+from uipc.gui import SceneGUI
 
 from asset_dir import AssetDir
 

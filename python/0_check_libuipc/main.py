@@ -1,11 +1,11 @@
 import threading
 import time
-from uipc import Engine, Logger
+
 from asset_dir import AssetDir
 from multiprocessing import Process, Queue
 
-from uipc import builtin
-from uipc import unit
+import uipc
+from uipc import Engine, Logger, unit, builtin
 
 def print_sorted(uids):
     uids = sorted(uids, key=lambda x: x['uid'])
@@ -33,7 +33,7 @@ def waiting(q : Queue):
         pass
 
 if __name__ == '__main__':
-    print(f'uipc version: {uipc.__version__}')
+    print(f'pyuipc version: {uipc.__version__}')
     print(f'asset_path: {AssetDir.asset_path()}')
     print(f'tetmesh_path: {AssetDir.tetmesh_path()}')
     print(f'trimesh_path: {AssetDir.trimesh_path()}')
