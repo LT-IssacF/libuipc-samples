@@ -7,7 +7,7 @@ from uipc import Logger, Timer, Animation
 from uipc import Vector3, Vector2, Transform, Quaternion, AngleAxis
 from uipc import builtin
 from uipc.core import Engine, World, Scene
-from uipc.geometry import GeometrySlot, SimplicialComplex, SimplicialComplexIO, ground, label_surface
+from uipc.geometry import GeometrySlot, SimplicialComplex, SimplicialComplexSlot, SimplicialComplexIO, ground, label_surface
 from uipc.constitution import AffineBodyConstitution, RotatingMotor
 from uipc.gui import SceneGUI
 
@@ -85,7 +85,7 @@ is_fixed = rail_guard_mesh.instances().find(builtin.is_fixed)
 view(is_fixed)[:] = 1
 rail_guard_obj.geometries().create(rail_guard_mesh)
 
-ground_height = -1.36
+ground_height = -1.5
 ground_obj = scene.objects().create('ground')
 ground_geo = ground(ground_height)
 ground_obj.geometries().create(ground_geo)

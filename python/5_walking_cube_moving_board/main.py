@@ -7,7 +7,7 @@ from uipc import Vector3, Vector2, Transform, Logger, Matrix4x4
 from uipc import builtin
 from uipc.core import World, Scene, Engine, Animation
 from uipc import view
-from uipc.geometry import SimplicialComplex, SimplicialComplexIO, ground, label_surface
+from uipc.geometry import SimplicialComplex, SimplicialComplexSlot, SimplicialComplexIO, ground, label_surface
 from uipc.constitution import AffineBodyConstitution, RotatingMotor, SoftTransformConstraint
 from uipc.gui import SceneGUI
 
