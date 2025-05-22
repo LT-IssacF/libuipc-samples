@@ -193,6 +193,18 @@
                     },
                     {
                         "__data__": {
+                            "default_value": 1,
+                            "values": [
+                                1
+                            ]
+                        },
+                        "__meta__": {
+                            "base": "IAttribute",
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "__data__": {
                             "default_value": [
                                 [
                                     1.0,
@@ -255,14 +267,14 @@
                     },
                     {
                         "__data__": {
-                            "default_value": 1,
+                            "default_value": 100000000.0,
                             "values": [
-                                1
+                                100000000.0
                             ]
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "double"
                         }
                     },
                     {
@@ -275,18 +287,6 @@
                         "__meta__": {
                             "base": "IAttribute",
                             "type": "int"
-                        }
-                    },
-                    {
-                        "__data__": {
-                            "default_value": 100000000.0,
-                            "values": [
-                                100000000.0
-                            ]
-                        },
-                        "__meta__": {
-                            "base": "IAttribute",
-                            "type": "double"
                         }
                     },
                     {
@@ -512,6 +512,35 @@
                     },
                     {
                         "__data__": {
+                            "default_value": 0,
+                            "values": [
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0
+                            ]
+                        },
+                        "__meta__": {
+                            "base": "IAttribute",
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "__data__": {
                             "default_value": [
                                 [
                                     0
@@ -676,24 +705,24 @@
                         "__data__": {
                             "default_value": 0,
                             "values": [
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1,
+                                1
                             ]
                         },
                         "__meta__": {
@@ -703,14 +732,8 @@
                     },
                     {
                         "__data__": {
-                            "default_value": 0,
+                            "default_value": 1,
                             "values": [
-                                1,
-                                1,
-                                1,
-                                1,
-                                1,
-                                1,
                                 1,
                                 1,
                                 1,
@@ -881,29 +904,6 @@
                         "__meta__": {
                             "base": "IAttribute",
                             "type": "Vector3i"
-                        }
-                    },
-                    {
-                        "__data__": {
-                            "default_value": 1,
-                            "values": [
-                                1,
-                                1,
-                                1,
-                                1,
-                                1,
-                                1,
-                                1,
-                                1,
-                                1,
-                                1,
-                                1,
-                                1
-                            ]
-                        },
-                        "__meta__": {
-                            "base": "IAttribute",
-                            "type": "int"
                         }
                     },
                     {
@@ -1509,18 +1509,6 @@
                     },
                     {
                         "__data__": {
-                            "default_value": 1,
-                            "values": [
-                                1
-                            ]
-                        },
-                        "__meta__": {
-                            "base": "IAttribute",
-                            "type": "int"
-                        }
-                    },
-                    {
-                        "__data__": {
                             "default_value": [
                                 [
                                     1.0,
@@ -1583,14 +1571,14 @@
                     },
                     {
                         "__data__": {
-                            "default_value": 100000000.0,
+                            "default_value": 1,
                             "values": [
-                                100000000.0
+                                1
                             ]
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "double"
+                            "type": "int"
                         }
                     },
                     {
@@ -1603,6 +1591,18 @@
                         "__meta__": {
                             "base": "IAttribute",
                             "type": "int"
+                        }
+                    },
+                    {
+                        "__data__": {
+                            "default_value": 100000000.0,
+                            "values": [
+                                100000000.0
+                            ]
+                        },
+                        "__meta__": {
+                            "base": "IAttribute",
+                            "type": "double"
                         }
                     },
                     {
@@ -1828,35 +1828,6 @@
                     },
                     {
                         "__data__": {
-                            "default_value": 0,
-                            "values": [
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0
-                            ]
-                        },
-                        "__meta__": {
-                            "base": "IAttribute",
-                            "type": "int"
-                        }
-                    },
-                    {
-                        "__data__": {
                             "default_value": [
                                 [
                                     0
@@ -2021,6 +1992,35 @@
                         "__data__": {
                             "default_value": 0,
                             "values": [
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0
+                            ]
+                        },
+                        "__meta__": {
+                            "base": "IAttribute",
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "__data__": {
+                            "default_value": 0,
+                            "values": [
                                 1,
                                 1,
                                 1,
@@ -2048,23 +2048,122 @@
                     },
                     {
                         "__data__": {
+                            "default_value": [
+                                [
+                                    0
+                                ],
+                                [
+                                    0
+                                ],
+                                [
+                                    0
+                                ],
+                                [
+                                    0
+                                ]
+                            ],
+                            "values": [
+                                [
+                                    [
+                                        0
+                                    ],
+                                    [
+                                        7
+                                    ],
+                                    [
+                                        4
+                                    ],
+                                    [
+                                        5
+                                    ]
+                                ],
+                                [
+                                    [
+                                        7
+                                    ],
+                                    [
+                                        0
+                                    ],
+                                    [
+                                        3
+                                    ],
+                                    [
+                                        2
+                                    ]
+                                ],
+                                [
+                                    [
+                                        2
+                                    ],
+                                    [
+                                        5
+                                    ],
+                                    [
+                                        6
+                                    ],
+                                    [
+                                        7
+                                    ]
+                                ],
+                                [
+                                    [
+                                        5
+                                    ],
+                                    [
+                                        2
+                                    ],
+                                    [
+                                        1
+                                    ],
+                                    [
+                                        0
+                                    ]
+                                ],
+                                [
+                                    [
+                                        7
+                                    ],
+                                    [
+                                        2
+                                    ],
+                                    [
+                                        5
+                                    ],
+                                    [
+                                        0
+                                    ]
+                                ]
+                            ]
+                        },
+                        "__meta__": {
+                            "base": "IAttribute",
+                            "type": "Vector4i"
+                        }
+                    },
+                    {
+                        "__data__": {
+                            "default_value": 1,
+                            "values": [
+                                1,
+                                1,
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "__meta__": {
+                            "base": "IAttribute",
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "__data__": {
                             "default_value": 0,
                             "values": [
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
+                                1,
+                                1,
+                                1,
+                                1,
                                 0
                             ]
                         },
@@ -2274,6 +2373,33 @@
                         "__data__": {
                             "default_value": 0,
                             "values": [
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0
+                            ]
+                        },
+                        "__meta__": {
+                            "base": "IAttribute",
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "__data__": {
+                            "default_value": 0,
+                            "values": [
                                 1,
                                 1,
                                 1,
@@ -2317,132 +2443,6 @@
                                 2,
                                 0,
                                 2
-                            ]
-                        },
-                        "__meta__": {
-                            "base": "IAttribute",
-                            "type": "int"
-                        }
-                    },
-                    {
-                        "__data__": {
-                            "default_value": 1,
-                            "values": [
-                                1,
-                                1,
-                                1,
-                                1,
-                                1
-                            ]
-                        },
-                        "__meta__": {
-                            "base": "IAttribute",
-                            "type": "int"
-                        }
-                    },
-                    {
-                        "__data__": {
-                            "default_value": [
-                                [
-                                    0
-                                ],
-                                [
-                                    0
-                                ],
-                                [
-                                    0
-                                ],
-                                [
-                                    0
-                                ]
-                            ],
-                            "values": [
-                                [
-                                    [
-                                        0
-                                    ],
-                                    [
-                                        7
-                                    ],
-                                    [
-                                        4
-                                    ],
-                                    [
-                                        5
-                                    ]
-                                ],
-                                [
-                                    [
-                                        7
-                                    ],
-                                    [
-                                        0
-                                    ],
-                                    [
-                                        3
-                                    ],
-                                    [
-                                        2
-                                    ]
-                                ],
-                                [
-                                    [
-                                        2
-                                    ],
-                                    [
-                                        5
-                                    ],
-                                    [
-                                        6
-                                    ],
-                                    [
-                                        7
-                                    ]
-                                ],
-                                [
-                                    [
-                                        5
-                                    ],
-                                    [
-                                        2
-                                    ],
-                                    [
-                                        1
-                                    ],
-                                    [
-                                        0
-                                    ]
-                                ],
-                                [
-                                    [
-                                        7
-                                    ],
-                                    [
-                                        2
-                                    ],
-                                    [
-                                        5
-                                    ],
-                                    [
-                                        0
-                                    ]
-                                ]
-                            ]
-                        },
-                        "__meta__": {
-                            "base": "IAttribute",
-                            "type": "Vector4i"
-                        }
-                    },
-                    {
-                        "__data__": {
-                            "default_value": 0,
-                            "values": [
-                                1,
-                                1,
-                                1,
-                                1,
-                                0
                             ]
                         },
                         "__meta__": {
@@ -2542,10 +2542,10 @@
                         "__data__": {
                             "default_value": [
                                 [
-                                    -637106000
+                                    357533872
                                 ],
                                 [
-                                    32767
+                                    32760
                                 ]
                             ],
                             "values": [
@@ -2696,7 +2696,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -2706,7 +2706,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -2718,22 +2718,22 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
                                         "allow_destroy": false,
-                                        "index": 5,
+                                        "index": 6,
                                         "name": "transform"
                                     },
                                     "velocity": {
@@ -2793,7 +2793,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -2803,7 +2803,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -2845,7 +2845,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -2855,7 +2855,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -2867,17 +2867,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -2942,7 +2942,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -2952,7 +2952,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -2994,7 +2994,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3004,7 +3004,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -3016,17 +3016,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -3091,7 +3091,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3101,7 +3101,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -3143,7 +3143,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3153,7 +3153,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -3165,17 +3165,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -3240,7 +3240,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3250,7 +3250,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -3292,7 +3292,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3302,7 +3302,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -3314,17 +3314,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -3389,7 +3389,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3399,7 +3399,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -3441,7 +3441,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3451,7 +3451,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -3463,17 +3463,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -3538,7 +3538,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3548,7 +3548,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -3590,7 +3590,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3600,7 +3600,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -3612,17 +3612,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -3687,7 +3687,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3697,7 +3697,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -3739,7 +3739,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3749,7 +3749,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -3761,17 +3761,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -3836,7 +3836,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3846,7 +3846,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -3888,7 +3888,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 48,
+                                        "index": 49,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -3898,7 +3898,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 49,
+                                        "index": 48,
                                         "name": "topo"
                                     }
                                 },
@@ -3910,22 +3910,22 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 39,
+                                        "index": 40,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 42,
+                                        "index": 41,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 41,
+                                        "index": 42,
                                         "name": "kappa"
                                     },
                                     "transform": {
                                         "allow_destroy": false,
-                                        "index": 40,
+                                        "index": 39,
                                         "name": "transform"
                                     },
                                     "velocity": {
@@ -3979,17 +3979,17 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 55,
+                                        "index": 52,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
                                         "allow_destroy": true,
-                                        "index": 57,
+                                        "index": 53,
                                         "name": "is_surf"
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 56,
+                                        "index": 51,
                                         "name": "topo"
                                     }
                                 },
@@ -4001,22 +4001,22 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 51,
+                                        "index": 55,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
                                         "allow_destroy": true,
-                                        "index": 53,
+                                        "index": 56,
                                         "name": "is_surf"
                                     },
                                     "parent_id": {
                                         "allow_destroy": true,
-                                        "index": 54,
+                                        "index": 57,
                                         "name": "parent_id"
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 52,
+                                        "index": 54,
                                         "name": "topo"
                                     }
                                 },
@@ -4100,7 +4100,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -4110,7 +4110,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -4122,22 +4122,22 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
                                         "allow_destroy": false,
-                                        "index": 5,
+                                        "index": 6,
                                         "name": "transform"
                                     },
                                     "velocity": {
@@ -4197,7 +4197,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -4207,7 +4207,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -4249,7 +4249,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -4259,7 +4259,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -4271,17 +4271,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -4346,7 +4346,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -4356,7 +4356,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -4398,7 +4398,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -4408,7 +4408,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -4420,17 +4420,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -4495,7 +4495,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -4505,7 +4505,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -4547,7 +4547,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -4557,7 +4557,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -4569,17 +4569,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -4644,7 +4644,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -4654,7 +4654,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -4696,7 +4696,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -4706,7 +4706,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -4718,17 +4718,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -4793,7 +4793,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -4803,7 +4803,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -4845,7 +4845,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -4855,7 +4855,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -4867,17 +4867,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -4942,7 +4942,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -4952,7 +4952,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -4994,7 +4994,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -5004,7 +5004,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -5016,17 +5016,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -5091,7 +5091,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -5101,7 +5101,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -5143,7 +5143,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 15,
+                                        "index": 14,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -5153,7 +5153,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 14,
+                                        "index": 15,
                                         "name": "topo"
                                     }
                                 },
@@ -5165,17 +5165,17 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 6,
+                                        "index": 5,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 7,
+                                        "index": 8,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 8,
+                                        "index": 7,
                                         "name": "kappa"
                                     },
                                     "transform": {
@@ -5240,7 +5240,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 18,
+                                        "index": 17,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -5250,7 +5250,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 17,
+                                        "index": 18,
                                         "name": "topo"
                                     }
                                 },
@@ -5292,7 +5292,7 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 48,
+                                        "index": 49,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
@@ -5302,7 +5302,7 @@
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 49,
+                                        "index": 48,
                                         "name": "topo"
                                     }
                                 },
@@ -5314,22 +5314,22 @@
                                 "__data__": {
                                     "is_dynamic": {
                                         "allow_destroy": true,
-                                        "index": 39,
+                                        "index": 40,
                                         "name": "is_dynamic"
                                     },
                                     "is_fixed": {
                                         "allow_destroy": true,
-                                        "index": 42,
+                                        "index": 41,
                                         "name": "is_fixed"
                                     },
                                     "kappa": {
                                         "allow_destroy": true,
-                                        "index": 41,
+                                        "index": 42,
                                         "name": "kappa"
                                     },
                                     "transform": {
                                         "allow_destroy": false,
-                                        "index": 40,
+                                        "index": 39,
                                         "name": "transform"
                                     },
                                     "velocity": {
@@ -5383,17 +5383,17 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 55,
+                                        "index": 52,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
                                         "allow_destroy": true,
-                                        "index": 57,
+                                        "index": 53,
                                         "name": "is_surf"
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 56,
+                                        "index": 51,
                                         "name": "topo"
                                     }
                                 },
@@ -5405,22 +5405,22 @@
                                 "__data__": {
                                     "is_facet": {
                                         "allow_destroy": true,
-                                        "index": 51,
+                                        "index": 55,
                                         "name": "is_facet"
                                     },
                                     "is_surf": {
                                         "allow_destroy": true,
-                                        "index": 53,
+                                        "index": 56,
                                         "name": "is_surf"
                                     },
                                     "parent_id": {
                                         "allow_destroy": true,
-                                        "index": 54,
+                                        "index": 57,
                                         "name": "parent_id"
                                     },
                                     "topo": {
                                         "allow_destroy": false,
-                                        "index": 52,
+                                        "index": 54,
                                         "name": "topo"
                                     }
                                 },
@@ -5546,36 +5546,39 @@
                 "index": 9
             }
         ],
-        "objects": [
-            {
-                "geometries": [
-                    0,
-                    1,
-                    2,
-                    3,
-                    4,
-                    5,
-                    6,
-                    7
-                ],
-                "id": 0,
-                "name": "cubes"
-            },
-            {
-                "geometries": [
-                    8
-                ],
-                "id": 1,
-                "name": "ramp"
-            },
-            {
-                "geometries": [
-                    9
-                ],
-                "id": 2,
-                "name": "ground"
-            }
-        ],
+        "object_collection": {
+            "next_id": 3,
+            "objects": [
+                {
+                    "geometries": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7
+                    ],
+                    "id": 0,
+                    "name": "cubes"
+                },
+                {
+                    "geometries": [
+                        8
+                    ],
+                    "id": 1,
+                    "name": "ramp"
+                },
+                {
+                    "geometries": [
+                        9
+                    ],
+                    "id": 2,
+                    "name": "ground"
+                }
+            ]
+        },
         "rest_geometry_slots": [
             {
                 "id": 0,
@@ -5620,6 +5623,6 @@
         ]
     },
     "__meta__": {
-        "type": "Scene"
+        "type": "SceneSnapshot"
     }
 }

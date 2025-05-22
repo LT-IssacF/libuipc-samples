@@ -66,7 +66,7 @@ class SceneEdit:
         print("Number of attributes", len(self.attributes))
         self.geometry_slots = self.scene_dict["__data__"]["geometry_slots"]
         print("Number of geometry slots", len(self.geometry_slots))
-        self.objects = self.scene_dict["__data__"]["objects"]
+        self.objects = self.scene_dict["__data__"]["object_collection"]["objects"]
         print("Number of objects", len(self.objects))
         for i, obj in enumerate(self.objects):
             print(f"Object {i}: {obj}")
