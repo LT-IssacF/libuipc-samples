@@ -20,7 +20,8 @@ this_folder = AssetDir.folder(__file__)
 output_path = AssetDir.output_path(this_folder)
 
 # --------------------------------------------------------
-scene = SceneIO.load(f'{output_path}/scene/scene0.json')
+# load from bson (binary json)
+scene = SceneIO.load(f'{output_path}/scene/scene0.bson')
 # OR use:
 # SceneIO.from_json(...)
 # to load the scene from a json
@@ -39,7 +40,7 @@ def on_update():
     global run
     global frame
     
-    path = f'{output_path}/scene/scene{frame}.json'
+    path = f'{output_path}/scene/scene{frame}.bson'
     
     if(imgui.Button('run & stop')):
         run = not run

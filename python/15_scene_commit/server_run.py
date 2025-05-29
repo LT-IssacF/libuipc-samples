@@ -78,7 +78,8 @@ ground_obj.geometries().create(g)
 
 scene_io = SceneIO(scene)
 # --------------------------------------------------
-scene_io.save(f'{output_path}/scene/scene0.json')
+# save the scene to bson (binary json)
+scene_io.save(f'{output_path}/scene/scene0.bson')
 # OR use:
 j = scene_io.to_json()
 # and pass on the json to anywhere you want
@@ -92,7 +93,7 @@ ss = SceneSnapshot(scene)
 while world.frame() < 1000:
     world.advance()
     world.retrieve()
-    path = f'{output_path}/scene/scene{world.frame()}.json'
+    path = f'{output_path}/scene/scene{world.frame()}.bson'
     
     # -------------------------------------------------------
     # commit the scene update to a file
