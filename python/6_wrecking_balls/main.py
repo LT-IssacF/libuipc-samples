@@ -117,7 +117,6 @@ sgui = SceneGUI(scene)
 world.init(scene)
 
 ps.init()
-ps.set_ground_plane_height(ground_height)
 tri_surf, _, _ = sgui.register()
 tri_surf.set_edge_width(1)
 

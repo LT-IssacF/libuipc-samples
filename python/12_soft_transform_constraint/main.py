@@ -95,9 +95,8 @@ scene.sanity_checker().report()
 sgui = SceneGUI(scene)
 
 ps.init()
-ps.set_ground_plane_height(ground_height)
-tri_surf, _, _ = sgui.register()
-tri_surf.set_edge_width(1)
+sgui.register()
+sgui.set_edge_width(1)
 
 run = False
 def on_update():

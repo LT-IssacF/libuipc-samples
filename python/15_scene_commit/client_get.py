@@ -27,19 +27,11 @@ scene = SceneIO.load(f'{output_path}/scene/scene0.json')
 # --------------------------------------------------------
 
 scene_io = SceneIO(scene)
-sgui = SceneGUI(scene)
-
-ground_objs:list[Object] = scene.objects().find('ground')
-ground_obj = ground_objs[0]
-ids = ground_obj.geometries().ids()
-geo_slot, rest_geo_slot = scene.geometries().find(ids[0])
-P = geo_slot.geometry().instances().find("P")
-y = P.view()[0][1]
+sgui = SceneGUI(scene, 'split')
 
 ps.init()
-ps.set_ground_plane_height(y)
-tri_surf, _, _ = sgui.register()
-tri_surf.set_edge_width(1)
+sgui.register()
+sgui.set_edge_width(1)
 
 run = False
 frame = 1

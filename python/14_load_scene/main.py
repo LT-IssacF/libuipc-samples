@@ -19,22 +19,14 @@ world = World(engine)
 
 scene = SceneIO.load(f'{folder}/scene.json')
 
-ground_objs:list[Object] = scene.objects().find('ground')
-ground_obj = ground_objs[0]
-ids = ground_obj.geometries().ids()
-geo_slot, rest_geo_slot = scene.geometries().find(ids[0])
-P = geo_slot.geometry().instances().find("P")
-y = P.view()[0][1]
-
 world.init(scene)
-sgui = SceneGUI(scene)
+sgui = SceneGUI(scene, 'split')
 
 Logger.set_level(Logger.Level.Warn)
 
 ps.init()
-ps.set_ground_plane_height(y)
-tri_surf, _, _ = sgui.register()
-tri_surf.set_edge_width(1)
+sgui.register()
+sgui.set_edge_width(1)
 
 run = False
 def on_update():

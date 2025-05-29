@@ -7,6 +7,7 @@
 # ---------------------------------
 import json 
 import lmdb 
+from asset_dir import AssetDir
 
 def flatten_json(y):
     out = {}
@@ -106,7 +107,8 @@ class SceneEdit:
         return unflatten_json(self.scene_dict_flat)
 
 if __name__ == "__main__":
-    scene_path = "scene.json"
+    folder = AssetDir.folder(__file__)
+    scene_path = f"{folder}/scene.json"
     scene_edit = SceneEdit(scene_path)
     # objects = scene_edit("objectsd")
     # geometries = scene_edit("geometry_atlas___data___geometries")

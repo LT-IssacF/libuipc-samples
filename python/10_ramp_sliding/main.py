@@ -71,7 +71,7 @@ ramp_object = scene.objects().create("ramp")
 pre_transform = Transform.Identity()
 pre_transform.scale(Vector3.Values([0.5 * N, 0.1, 5]))
 io = SimplicialComplexIO(pre_transform)
-ramp_mesh = io.read(f'{AssetDir.tetmesh_path()}/cube.msh')
+ramp_mesh = io.read(f'{AssetDir.trimesh_path()}/cube.obj')
 label_surface(ramp_mesh)
 default_element.apply_to(ramp_mesh)
 abd.apply_to(ramp_mesh, 1e8)
@@ -89,13 +89,13 @@ ground_height = -2
 g = ground(ground_height)
 scene.objects().create("ground").geometries().create(g)
 
-sgui = SceneGUI(scene)
+sgui = SceneGUI(scene, 'split')
 world.init(scene)
 
 ps.init()
 ps.set_ground_plane_height(-2)
-tri_surf, _, _ = sgui.register()
-tri_surf.set_edge_width(1)
+sgui.register()
+sgui.set_edge_width(1)
 
 run = False
 def on_update():

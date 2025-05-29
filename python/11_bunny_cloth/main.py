@@ -65,9 +65,9 @@ world.init(scene)
 
 ps.init()
 ps.set_ground_plane_height(-1.0)
-sgui = SceneGUI(scene)
-tri_surf, lines, points = sgui.register()
-tri_surf.set_edge_width(1)
+sgui = SceneGUI(scene, 'split')
+sgui.register()
+sgui.set_edge_width(1.0)
 
 run = False
 def on_update():
