@@ -75,7 +75,6 @@ abrj.apply_to(joint_mesh,
 joints = scene.objects().create('joint')
 joints.geometries().create(joint_mesh)
 
-
 ground_height = -1.1
 g = ground(ground_height)
 ground_obj = scene.objects().create('ground')
