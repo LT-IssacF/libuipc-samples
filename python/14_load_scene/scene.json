@@ -50,6 +50,7 @@
             "newton": {
                 "ccd_tol": 1.0,
                 "max_iter": 1024,
+                "transrate_tol": 0.1,
                 "use_adaptive_tol": false,
                 "velocity_tol": 0.05
             },
@@ -140,7 +141,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "unsigned __int64"
+                            "type": "U64"
                         }
                     },
                     {
@@ -152,7 +153,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -164,7 +165,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -176,7 +177,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -188,7 +189,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "double"
+                            "type": "F64"
                         }
                     },
                     {
@@ -200,7 +201,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -212,7 +213,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -286,7 +287,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "double"
+                            "type": "F64"
                         }
                     },
                     {
@@ -298,7 +299,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -372,7 +373,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "double"
+                            "type": "F64"
                         }
                     },
                     {
@@ -500,7 +501,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -519,7 +520,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -548,7 +549,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -739,7 +740,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -762,7 +763,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -938,7 +939,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -950,7 +951,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1024,7 +1025,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1098,7 +1099,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1172,7 +1173,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1246,7 +1247,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1320,7 +1321,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1394,7 +1395,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1468,7 +1469,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1480,7 +1481,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "unsigned __int64"
+                            "type": "U64"
                         }
                     },
                     {
@@ -1492,7 +1493,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1504,7 +1505,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1516,7 +1517,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1528,7 +1529,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "double"
+                            "type": "F64"
                         }
                     },
                     {
@@ -1602,7 +1603,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1614,7 +1615,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1626,7 +1627,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "double"
+                            "type": "F64"
                         }
                     },
                     {
@@ -1700,7 +1701,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "double"
+                            "type": "F64"
                         }
                     },
                     {
@@ -1828,7 +1829,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -1847,7 +1848,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -2038,7 +2039,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -2067,7 +2068,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -2177,7 +2178,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -2193,7 +2194,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -2417,7 +2418,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -2444,7 +2445,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -2471,7 +2472,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
@@ -2483,7 +2484,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "unsigned __int64"
+                            "type": "U64"
                         }
                     },
                     {
@@ -2559,17 +2560,17 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     },
                     {
                         "__data__": {
                             "default_value": [
                                 [
-                                    -996767568
+                                    789214196
                                 ],
                                 [
-                                    32763
+                                    32766
                                 ]
                             ],
                             "values": [
@@ -2669,7 +2670,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "double"
+                            "type": "F64"
                         }
                     },
                     {
@@ -2689,7 +2690,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "double"
+                            "type": "F64"
                         }
                     },
                     {
@@ -2709,7 +2710,7 @@
                         },
                         "__meta__": {
                             "base": "IAttribute",
-                            "type": "int"
+                            "type": "I32"
                         }
                     }
                 ],
