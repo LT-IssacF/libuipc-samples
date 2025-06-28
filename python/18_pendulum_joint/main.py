@@ -25,11 +25,9 @@ world = World(engine)
 
 config = Scene.default_config()
 config['dt'] = 0.01
-config['contact']['enable'] = True
-config['collision_detection']['method'] = 'informative_linear_bvh'
+config['contact']['enable'] = False
 config['contact']['d_hat'] = 0.001
 config['gravity'] = [[0.0], [-9.8], [0.0]]
-config['contact']['friction']['enable'] = False
 print(config)
 scene = Scene(config)
 
