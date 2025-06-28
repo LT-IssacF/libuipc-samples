@@ -107,6 +107,9 @@ def on_update():
         else:
             imgui.Text(f'[{geo_slot.id()}] This version dont support global vertex offset!')
     
+    types = csf.contact_primitive_types()
+    imgui.Text(f'Contact Primitive Types: {types}')
+    
     csf.contact_primitives('PH', ph_geo)
     PH = ph_geo.instances().find('topo')
     imgui.Text(f'[PH] Contact Primitives: {PH.view().reshape(-1,2)}')
