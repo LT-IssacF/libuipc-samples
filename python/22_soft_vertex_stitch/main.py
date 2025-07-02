@@ -79,9 +79,6 @@ g = ground(ground_height)
 g_geo_slot, g_rest_geo_slot = ground_obj.geometries().create(g)
 geo_slot_list.append(g_geo_slot)
 
-
-
-
 world.init(scene)
 
 sgui = SceneGUI(scene, 'split')
