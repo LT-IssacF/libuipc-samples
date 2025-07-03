@@ -106,7 +106,13 @@ def on_update():
             imgui.Text(f'[{geo_slot.id()}] Global Vertex Offset: {gvo.view()}')
         else:
             imgui.Text(f'[{geo_slot.id()}] This version dont support global vertex offset!')
+
+    if(run):
+        world.advance()
+        world.retrieve()
+        sgui.update()
     
+    # contact primitives
     types = csf.contact_primitive_types()
     imgui.Text(f'Contact Primitive Types: {types}')
     
@@ -130,6 +136,7 @@ def on_update():
     EE = ee_geo.instances().find('topo')
     imgui.Text(f'[EE] Contact Primitives: {EE.view().reshape(-1,4)}')
 
+    # contact gradient and hessian
     csf.contact_gradient(cg_geo)
     gi = cg_geo.instances().find('i')
     grad = cg_geo.instances().find('grad')
@@ -140,11 +147,6 @@ def on_update():
     hj = ch_geo.instances().find('j')
     hess = ch_geo.instances().find('hess')
     imgui.Text(f'[CH] Contact Hessian: {hi.view()} {hj.view()} {hess.view()}')
-
-    if(run):
-        world.advance()
-        world.retrieve()
-        sgui.update()
 
 ps.set_user_callback(on_update)
 ps.show()
