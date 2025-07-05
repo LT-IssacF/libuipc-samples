@@ -170,7 +170,13 @@ def on_update():
             imgui.Text(f'[{geo_slot.id()}] Global Vertex Offset: {gvo.view()}')
         else:
             imgui.Text(f'[{geo_slot.id()}] This version dont support global vertex offset!')
+
+    if(run):
+        world.advance()
+        world.retrieve()
+        sgui.update()
     
+    # contact primitives
     types = csf.contact_primitive_types()
     imgui.Text(f'Contact Primitive Types: {types}')
 
