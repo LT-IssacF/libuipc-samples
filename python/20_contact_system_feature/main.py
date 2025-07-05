@@ -24,7 +24,6 @@ config = Scene.default_config()
 dt = 0.02
 config['dt'] = dt
 config['gravity'] = [[0.0], [-9.8], [0.0]]
-config['contact']['friction']['enable'] = True
 scene = Scene(config)
 
 # friction ratio and contact resistance
@@ -59,8 +58,7 @@ geo_slot_list.append(abd_geo_slot)
 # FEM
 fem_cube_obj = scene.objects().create('fem')
 fem_mesh = cube_mesh.copy()
-snk.apply_to(fem_mesh)
-velocity = fem_mesh.vertices().find(builtin.velocity)
+snk.apply_to(fem_mesh, mass_density=1e3)
 fem_geo_slot, fem_rest_geo_slot = fem_cube_obj.geometries().create(fem_mesh)
 geo_slot_list.append(fem_geo_slot)
 
@@ -79,22 +77,88 @@ ps.init()
 sgui.register()
 sgui.set_edge_width(1)
 
-# contact primitives geometry
-ph_geo = Geometry() # point halfplane
-pp_geo = Geometry() # point-point
-pe_geo = Geometry() # point-edge
-pt_geo = Geometry() # point-triangle
-ee_geo = Geometry() # edge-edge
+class ContactInfo:
+    def __init__(self, name, csf:ContactSystemFeature):
+        self.name = name
+        self.csf :ContactSystemFeature= csf
+        # Normal Contact
+        self.NE = Geometry()  # energy
+        self.NG = Geometry()  # gradient
+        self.NH = Geometry()  # hessian
+        # Frictional Contact
+        self.FE = Geometry()  # energy
+        self.FG = Geometry()  # gradient
+        self.FH = Geometry()  # hessian
+    
+    def retrieve(self):
+        # Normal Contact
+        self.csf.contact_energy(self.name + '+N', self.NE)
+        self.csf.contact_gradient(self.name + '+N', self.NG)
+        self.csf.contact_hessian(self.name + '+N', self.NH)
+        # Frictional Contact
+        self.csf.contact_energy(self.name + '+F', self.FE)
+        self.csf.contact_gradient(self.name + '+F', self.FG)
+        self.csf.contact_hessian(self.name + '+F', self.FH)
+    
+    def display_energy(self, t:str, geo:Geometry):
+        topo = geo.instances().find('topo')
+        if topo is None:
+            return
+        topo_view = topo.view()
+        imgui.Text(f'[{self.name}+{t}] Contact Topo: {topo_view.reshape(-1, topo_view.shape[1])}')
+        energy = geo.instances().find('energy')
+        imgui.Text(f'[{self.name}+{t}] Contact Energy: {energy.view()}')
+    
+    def display_gradient(self, t:str, geo:Geometry):
+        i = geo.instances().find('i')
+        if i is None:
+            return
+        imgui.Text(f'[{self.name}+{t}] Contact Gradient I: {i.view()}')
+        grad = geo.instances().find('grad')
+        imgui.Text(f'[{self.name}+{t}] Contact Gradient: {grad.view()}')
+    
+    def display_hessian(self, t:str, geo:Geometry):
+        i = geo.instances().find('i')
+        if i is None:
+            return
+        imgui.Text(f'[{self.name}+{t}] Contact Hessian I: {i.view()}')
+        j = geo.instances().find('j')
+        if j is None:
+            return
+        imgui.Text(f'[{self.name}+{t}] Contact Hessian J: {j.view()}')
+        hess = geo.instances().find('hess')
+        imgui.Text(f'[{self.name}+{t}] Contact Hessian: {hess.view()}')
+    
+    def display(self):
+        '''
+        Display the contact information for this contact primitive.
+        Gradient and Hessian are not displayed by default (Too many data).
+        You can uncomment the display_gradient and display_hessian methods to display them.
+        '''
+        self.display_energy('N', self.NE)
+        # self.display_gradient('N', self.NG)
+        # self.display_hessian('N', self.NH)
+        self.display_energy('F', self.FE)
+        # self.display_gradient('F', self.FG)
+        # self.display_hessian('F', self.FH)
 
-# contact gradient and hessian
-cg_geo = Geometry()
-ch_geo = Geometry()
+# contact primitives geometry
+# point-halfplane
+PH = ContactInfo('PH', csf)
+# point-point
+PP = ContactInfo('PP', csf)
+# point-edge
+PE = ContactInfo('PE', csf)
+# point-triangle
+PT = ContactInfo('PT', csf)
+# edge-edge
+EE = ContactInfo('EE', csf)
 
 run = False
 def on_update():
     global run
     global geo_slot_list
-    global ph_geo
+    global PH
 
     if(imgui.Button('run & stop')):
         run = not run
@@ -109,42 +173,25 @@ def on_update():
     
     types = csf.contact_primitive_types()
     imgui.Text(f'Contact Primitive Types: {types}')
-    
-    csf.contact_primitives('PH', ph_geo)
-    PH = ph_geo.instances().find('topo')
-    imgui.Text(f'[PH] Contact Primitives: {PH.view().reshape(-1,2)}')
-
-    csf.contact_primitives('PP', pp_geo)
-    PP = pp_geo.instances().find('topo')
-    imgui.Text(f'[PP] Contact Primitives: {PP.view().reshape(-1,2)}')
-
-    csf.contact_primitives('PE', pe_geo)
-    PE = pe_geo.instances().find('topo')
-    imgui.Text(f'[PE] Contact Primitives: {PE.view().reshape(-1,3)}')
-
-    csf.contact_primitives('PT', pt_geo)
-    PT = pt_geo.instances().find('topo')
-    imgui.Text(f'[PT] Contact Primitives: {PT.view().reshape(-1,4)}')
-
-    csf.contact_primitives('EE', ee_geo)
-    EE = ee_geo.instances().find('topo')
-    imgui.Text(f'[EE] Contact Primitives: {EE.view().reshape(-1,4)}')
-
-    csf.contact_gradient(cg_geo)
-    gi = cg_geo.instances().find('i')
-    grad = cg_geo.instances().find('grad')
-    imgui.Text(f'[CG] Contact Gradient:{gi.view()} {grad.view().reshape(-1,3)}')
-
-    csf.contact_hessian(ch_geo)
-    hi = ch_geo.instances().find('i')
-    hj = ch_geo.instances().find('j')
-    hess = ch_geo.instances().find('hess')
-    imgui.Text(f'[CH] Contact Hessian: {hi.view()} {hj.view()} {hess.view()}')
 
     if(run):
         world.advance()
         world.retrieve()
         sgui.update()
+        
+        # compute all contact info
+        csf.compute_contact()
+        PH.retrieve()
+        PP.retrieve()
+        PE.retrieve()
+        PT.retrieve()
+        EE.retrieve()
+    
+    PH.display()
+    PP.display()
+    PE.display()
+    PT.display()
+    EE.display()
 
 ps.set_user_callback(on_update)
 ps.show()
