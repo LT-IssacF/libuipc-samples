@@ -109,17 +109,23 @@ class ContactInfo:
         energy = geo.instances().find('energy')
         imgui.Text(f'[{self.name}+{t}] Contact Energy: {energy.view()}')
     
-    def display_gradient(self, t:str, geo:Geometry):
+    def display_gradient(self, t:str, geo:Geometry, show_detail:bool):
         i = geo.instances().find('i')
         if i is None:
+            return
+        if not show_detail:
+            imgui.Text(f'[{self.name}+{t}] Contact Gradient Count: {geo.instances().size()}, skipping detail display.')
             return
         imgui.Text(f'[{self.name}+{t}] Contact Gradient I: {i.view()}')
         grad = geo.instances().find('grad')
         imgui.Text(f'[{self.name}+{t}] Contact Gradient: {grad.view()}')
     
-    def display_hessian(self, t:str, geo:Geometry):
+    def display_hessian(self, t:str, geo:Geometry, show_detail:bool):
         i = geo.instances().find('i')
         if i is None:
+            return
+        if not show_detail:
+            imgui.Text(f'[{self.name}+{t}] Contact Hessian Count: {geo.instances().size()}, skipping detail display.')
             return
         imgui.Text(f'[{self.name}+{t}] Contact Hessian I: {i.view()}')
         j = geo.instances().find('j')
@@ -133,14 +139,14 @@ class ContactInfo:
         '''
         Display the contact information for this contact primitive.
         Gradient and Hessian are not displayed by default (Too many data).
-        You can uncomment the display_gradient and display_hessian methods to display them.
         '''
         self.display_energy('N', self.NE)
-        # self.display_gradient('N', self.NG)
-        # self.display_hessian('N', self.NH)
+        self.display_gradient('N', self.NG, show_detail=False)
+        self.display_hessian('N', self.NH, show_detail=False)
         self.display_energy('F', self.FE)
-        # self.display_gradient('F', self.FG)
-        # self.display_hessian('F', self.FH)
+        self.display_gradient('F', self.FG, show_detail=False)
+        self.display_hessian('F', self.FH, show_detail=False)
+        imgui.Separator()
 
 # contact primitives geometry
 # point-halfplane
@@ -179,7 +185,8 @@ def on_update():
     # contact primitives
     types = csf.contact_primitive_types()
     imgui.Text(f'Contact Primitive Types: {types}')
-
+    imgui.Separator()
+    
     if(run):
         world.advance()
         world.retrieve()
