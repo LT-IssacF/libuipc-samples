@@ -1,11 +1,11 @@
 import threading
 import time
+import asyncio
 
 from asset_dir import AssetDir
-from multiprocessing import Process, Queue
 
 import uipc
-from uipc import Engine, Logger, unit, builtin
+from uipc import Engine, Logger, unit, builtin, Future
 
 def print_sorted(uids):
     uids = sorted(uids, key=lambda x: x['uid'])
@@ -14,23 +14,6 @@ def print_sorted(uids):
         name = u['name']
         type = u['type']
         print(f'uid: {uid}, name: {name}, type: {type}')
-
-def waiting(q : Queue):
-    symbols = ['|', '/', '-', '\\']
-    i = 0
-    start_time = time.time()
-    elapsed_time = 0
-    while(True):
-        if(not q.empty()):
-            break
-        print('Waiting for cuda engine to initialize. ', end='')
-        current_time = time.time()
-        elapsed_time = current_time - start_time
-        print(f'Elapsed time: {elapsed_time:.2f} seconds', end='')
-        print(f' {symbols[i % len(symbols)]}', end='\r')
-        i+=1
-        time.sleep(0.05)
-        pass
 
 if __name__ == '__main__':
     print(f'pyuipc version: {uipc.__version__}')
@@ -68,16 +51,22 @@ if __name__ == '__main__':
 * The first time to initialize the engine will take a while (maybe several minutes)
   because the cuda kernels need to be compiled.
 ''')
-    # create a process to wait for the engine to initialize
-    Q = Queue()
-    p = Process(target=waiting, args=(Q,))
-    p.start()
 
-    engine = Engine('cuda', AssetDir.output_path(__file__))
-    
-    # signal the waiting process to stop
-    Q.put(1)
-    p.join()
-    print(' ' * 100, end='\r')
-    print('* Engine initialized.')
+    def init_engine():
+        engine = Engine('cuda', workspace=AssetDir.output_path(__file__))
+        time.sleep(0.5) # Just make some delay
+        print(f'Engine initialized: {engine}')
 
+    start_time = time.time()
+    symbols = ['|', '/', '-', '\\']
+    i = 0
+
+    f = Future.launch(init_engine)
+    while not f.is_ready():
+        print('Waiting for cuda engine to initialize. ', end='')
+        current_time = time.time()
+        elapsed_time = current_time - start_time
+        print(f'Elapsed time: {elapsed_time:.2f} seconds', end='')
+        print(f' {symbols[i % len(symbols)]}', end='\r')
+        i += 1
+        time.sleep(0.05)
