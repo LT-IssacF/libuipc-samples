@@ -178,8 +178,9 @@ def simulate():
 
     # ----------------------------------------------------------------------------
     # Disable stitch contact
-    stitch_contact = scene.contact_tabular().create("stitch")
-    scene.contact_tabular().insert(stitch_contact, stitch_contact, 0, 0, False)
+    stitch_front = scene.contact_tabular().create("stitch_front")
+    stitch_back = scene.contact_tabular().create("stitch_back")
+    scene.contact_tabular().insert(stitch_front, stitch_back, 0, 0, False)
     # Add stitch constraints
     stitch_obj = scene.objects().create("stitch")
     svs = SoftVertexStitch()
@@ -193,7 +194,7 @@ def simulate():
         # vertex pairs to stitch
         stitch_Vs, 
         # contact elements for stitching vertex pairs
-        (stitch_contact, stitch_contact), 
+        (stitch_front, stitch_back), 
         1000.0
     )
     stitch_obj.geometries().create(stitch_geo)
