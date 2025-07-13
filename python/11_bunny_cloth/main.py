@@ -41,7 +41,7 @@ nks = NeoHookeanShell()
 dsb = DiscreteShellBending()
 moduli = ElasticModuli.youngs_poisson(10 * kPa, 0.499)
 nks.apply_to(cloth_mesh, moduli=moduli, mass_density=200, thickness=0.001)
-dsb.apply_to(cloth_mesh, E = 10.0)
+dsb.apply_to(cloth_mesh, bending_stiffness=10.0)
 view(cloth_mesh.positions())[:] += 1.0
 cloth.geometries().create(cloth_mesh)
 
