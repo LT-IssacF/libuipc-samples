@@ -47,7 +47,7 @@ def simulate():
     config["dt"] = 1.0 / 60
     config["contact"]["d_hat"] = 0.002
     config["gravity"] = [[0.0], [-9.8], [0.0]]
-    config["newton"]["velocity_tol"] = 0.05
+    config["newton"]["velocity_tol"] = 0.1
     config["newton"]["max_iter"] = 1024
     config["extras"]["debug"]["dump_surface"] = False
     config["linear_system"]["tol_rate"] = 1e-3
@@ -63,7 +63,7 @@ def simulate():
 
     default_elem = scene.contact_tabular().default_element()
 
-    scene.contact_tabular().default_model(1, 1e9)
+    scene.contact_tabular().default_model(0.01, 1e9)
     t_shirt_front_elem = scene.contact_tabular().create("t_shirt_front")
     t_shirt_back_elem = scene.contact_tabular().create("t_shirt_back")
 
@@ -77,8 +77,8 @@ def simulate():
     snh.apply_to(t_shirt_back, moduli=moduli, thickness=0.0002, mass_density=100.0)
     # NOTE: The parameter 'E' here represents the bending modulus (kappa), NOT the Young's Modulus.
     # It is calculated as: kappa = (youngs_modulus * thickness**3) / (24 * (1 - poisson_ratio**2))
-    dsb.apply_to(t_shirt_front, E=10)
-    dsb.apply_to(t_shirt_back, E=10)
+    dsb.apply_to(t_shirt_front, bending_stiffness=10)
+    dsb.apply_to(t_shirt_back, bending_stiffness=10)
     t_shirt_front_elem.apply_to(t_shirt_front)
     t_shirt_back_elem.apply_to(t_shirt_back)
 
@@ -171,21 +171,16 @@ def simulate():
     rest_t_shirt_front = t_shirt_front.copy()
     rest_t_shirt_back = t_shirt_back.copy()
 
-    # Disable stitch contact
-    # NOTE: Assigning contact element IDs shoudl be done before create geometry
     stitch_Vs = np.array([[i, j] for i, j in zip(indices1, indices2)], dtype=np.int32)
     print(stitch_Vs)
-    stitch_contact = scene.contact_tabular().create("stitch")
-    front_contact_element_id = t_shirt_front.vertices().create(
-        "contact_element_id", t_shirt_front_elem.id()
-    )
-    view(front_contact_element_id)[stitch_Vs[:, 0]] = stitch_contact.id()
-    back_contact_element_id = t_shirt_back.vertices().create(
-        "contact_element_id", t_shirt_back_elem.id()
-    )
-    view(back_contact_element_id)[stitch_Vs[:, 1]] = stitch_contact.id()
-    scene.contact_tabular().insert(stitch_contact, stitch_contact, 0, 0, False)
 
+
+    
+
+    # ----------------------------------------------------------------------------
+    # Disable stitch contact
+    stitch_contact = scene.contact_tabular().create("stitch")
+    scene.contact_tabular().insert(stitch_contact, stitch_contact, 0, 0, False)
     # Add stitch constraints
     stitch_obj = scene.objects().create("stitch")
     svs = SoftVertexStitch()
@@ -194,10 +189,18 @@ def simulate():
     )
     back_geo_slot, _ = t_shirt_obj.geometries().create(t_shirt_back, rest_t_shirt_back)
     stitch_geo = svs.create_geometry(
-        (front_geo_slot, back_geo_slot), stitch_Vs, kappa=1e3
+        # geometry pair to stitched
+        (front_geo_slot, back_geo_slot), 
+        # vertex pairs to stitch
+        stitch_Vs, 
+        # contact elements for the 2 geometries
+        (stitch_contact, stitch_contact), 
+        1000.0
     )
     stitch_obj.geometries().create(stitch_geo)
+    # -----------------------------------------------------------------------------
 
+    # -----------------------------------------------------------------------------
     # make body no contact with itself
     body_elem = scene.contact_tabular().create("body")
     scene.contact_tabular().insert(body_elem, body_elem, 0, 0, False)
@@ -216,44 +219,29 @@ def simulate():
     body_gravity = body.vertices().create(builtin.gravity, Vector3.Zero())
     body_obj = scene.objects().create("body")
     slot, rest_slot = body_obj.geometries().create(body)
-
-    def body_update(info: Animation.UpdateInfo):
-        geo_slots: list[GeometrySlot] = info.geo_slots()
-        geo: SimplicialComplex = geo_slots[0].geometry()
-        aim_pos = geo.vertices().find(builtin.aim_position)
-        aio = AttributeIO(str(curr_folder / "body.obj"))
-        aio.read(builtin.position, aim_pos)
-
-    animator = scene.animator()
-    animator.substep(5)
-    animator.insert(body_obj, body_update)
+    # -----------------------------------------------------------------------------
 
     world.init(scene)
     sio = SceneIO(scene)
-    sio.write_surface(f"{output_dir}/scene_surface{world.frame()}.obj")
-    io = SimplicialComplexIO()
-    io.write(
-        f"{output_dir}/cloth_front_surface{world.frame()}.obj",
-        front_geo_slot.geometry(),
-    )
-    io.write(
-        f"{output_dir}/cloth_back_surface{world.frame()}.obj", back_geo_slot.geometry()
-    )
+    
+    def write_to_disk(frame):
+        io = SimplicialComplexIO()
+        io.write(
+            f"{output_dir}/cloth_front_surface{frame}.obj",
+            front_geo_slot.geometry(),
+        )
+        io.write(
+            f"{output_dir}/cloth_back_surface{frame}.obj", back_geo_slot.geometry()
+        )
+        sio.write_surface(f"{output_dir}/scene_surface{frame}.obj")
+
+    write_to_disk(world.frame()) # 0
 
     while world.frame() < 500:
         world.advance()
         world.retrieve()
-        io = SimplicialComplexIO()
-        io.write(
-            f"{output_dir}/cloth_front_surface{world.frame()}.obj",
-            front_geo_slot.geometry(),
-        )
-        io.write(
-            f"{output_dir}/cloth_back_surface{world.frame()}.obj",
-            back_geo_slot.geometry(),
-        )
-        sio.write_surface(f"{output_dir}/scene_surface{world.frame()}.obj")
-
-
+        write_to_disk(world.frame())
+        print(f"Frame {world.frame()} done.")
+        
 if __name__ == "__main__":
     simulate()
