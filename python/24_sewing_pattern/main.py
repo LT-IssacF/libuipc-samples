@@ -75,8 +75,7 @@ def simulate():
     label_surface(t_shirt_back)
     snh.apply_to(t_shirt_front, moduli=moduli, thickness=0.0002, mass_density=100.0)
     snh.apply_to(t_shirt_back, moduli=moduli, thickness=0.0002, mass_density=100.0)
-    # NOTE: The parameter 'E' here represents the bending modulus (kappa), NOT the Young's Modulus.
-    # It is calculated as: kappa = (youngs_modulus * thickness**3) / (24 * (1 - poisson_ratio**2))
+
     dsb.apply_to(t_shirt_front, bending_stiffness=10)
     dsb.apply_to(t_shirt_back, bending_stiffness=10)
     t_shirt_front_elem.apply_to(t_shirt_front)
@@ -193,7 +192,7 @@ def simulate():
         (front_geo_slot, back_geo_slot), 
         # vertex pairs to stitch
         stitch_Vs, 
-        # contact elements for the 2 geometries
+        # contact elements for stitching vertex pairs
         (stitch_contact, stitch_contact), 
         1000.0
     )
