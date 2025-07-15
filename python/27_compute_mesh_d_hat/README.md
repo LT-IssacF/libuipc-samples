@@ -1,18 +1,9 @@
-# Bunny Cloth Async
+# Compute Mesh d_hat Example
 
-This is an example of using `uipc.Future` to run physics simulation asynchronously in a separate thread to avoid blocking the main thread. 
-This allows the UI to remain responsive while the physics simulation runs in the background. 
-
-# Usage
+This example demonstrates how to compute the mesh-wise $\hat{d}$ value for a mesh in a simulation environment.
 
 ```python
-def async_run():
-    world.advance()
-    world.retrieve()
-
-f = Future.launch(async_run)
-# get the control immediately
-if f.is_ready():
-    # do something with the result
-    pass
+compute_mesh_d_hat(mesh, max_d_hat=default_d_hat)
 ```
+
+This `compute_mesh_d_hat` function will compute the mesh-wise $\hat{d}$ value for the provided mesh. The $\hat{d}$ is computed based on the mesh resolution (normally the edge length of the mesh).
