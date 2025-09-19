@@ -47,7 +47,7 @@ def simulate():
     config["dt"] = 1.0 / 60
     config["contact"]["d_hat"] = 0.002
     config["gravity"] = [[0.0], [-9.8], [0.0]]
-    config["newton"]["velocity_tol"] = 0.1
+    config["newton"]["velocity_tol"] = 0.05
     config["newton"]["max_iter"] = 1024
     config["extras"]["debug"]["dump_surface"] = False
     config["linear_system"]["tol_rate"] = 1e-3

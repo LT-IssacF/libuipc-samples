@@ -54,6 +54,7 @@ def on_update():
         # -----------------------------------------
         # update from the scene commit files
         scene_io.update(path)
+        
         # OR use:
         # scene_io.update_from_json(...)
         # -----------------------------------------

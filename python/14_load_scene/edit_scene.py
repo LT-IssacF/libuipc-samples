@@ -5,8 +5,7 @@
 # @date 2025-05-17
 # @version 1.0
 # ---------------------------------
-import json 
-import lmdb 
+import json
 from asset_dir import AssetDir
 
 def flatten_json(y):

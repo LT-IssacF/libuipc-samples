@@ -10,7 +10,7 @@ from uipc.geometry import SimplicialComplexIO
 from uipc.constitution import AffineBodyConstitution, NeoHookeanShell, DiscreteShellBending, ElasticModuli
 from uipc.gui import SceneGUI 
 from uipc.unit import MPa, GPa, kPa 
-from uipc import Future
+from uipc import ResidentThread
 import time
 
 from asset_dir import AssetDir
@@ -31,6 +31,7 @@ config['dt'] = 0.01
 config['contact']['d_hat'] = 0.01
 print(config)
 scene = Scene(config)
+config['gravity'] = [[0.0], [0.0], [0.0]]
 
 # begin setup the scene
 cloth = scene.objects().create('cloth')
@@ -79,7 +80,7 @@ def async_run():
     global sim_fps
     sim_fps = 1.0 / (time.time() - t)
 
-future:Future=None 
+rt = ResidentThread()
 run = False
 
 def on_update():
@@ -90,10 +91,9 @@ def on_update():
     imgui.Text(f'Physics Frame {world.frame()} | FPS: {sim_fps:.2f}')
 
     if(run):
-        global future
-        if future is None or future.is_ready():
-            future = Future.launch(async_run)
+        if rt.is_ready():
             sgui.update()
+            rt.post(async_run)
 
 ps.set_user_callback(on_update)
 ps.show()
