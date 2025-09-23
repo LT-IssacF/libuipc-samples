@@ -192,8 +192,6 @@ def on_update():
         world.retrieve()
         sgui.update()
         
-        # compute all contact info
-        csf.compute_contact()
         PH.retrieve()
         PP.retrieve()
         PE.retrieve()
