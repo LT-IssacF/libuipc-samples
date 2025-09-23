@@ -19,24 +19,27 @@ Logger.set_level(Logger.Level.Warn)
 workspace = AssetDir.output_path(__file__)
 this_folder = AssetDir.folder(__file__)
 trimesh_path = AssetDir.trimesh_path()
+tetmesh_path = AssetDir.tetmesh_path()
 
 engine = Engine('cuda', workspace)
 world = World(engine)
 
-# -----------------------------------------------------------------------------
-# advanced scene config
-# -----------------------------------------------------------------------------
-scene = Scene()
-# setup config after scene is created
-config = scene.config()
-dt_attr = config.find('dt')
-view(dt_attr)[:] = 0.03
-friction_enable = config.find('contact/friction/enable')
-view(friction_enable)[:] = 1
-
+config = Scene.default_config()
+config['dt'] = 0.01
+config['contact']['d_hat'] = 0.01
 print(config)
-# -----------------------------------------------------------------------------
+scene = Scene(config)
 
+default_element = scene.subscene_tabular().default_element()
+subscene_1 = scene.subscene_tabular().create('#1')
+subscene_2 = scene.subscene_tabular().create('#2')
+
+# we like the subscene_0 can contact with subscene_1 and subscene_2
+# but the subscene_1 and subscene_2 cannot contact with each other
+scene.subscene_tabular().insert(default_element, subscene_1, True)
+scene.subscene_tabular().insert(default_element, subscene_2, True)
+# note if not insert, default is no contact between 2 subscenes
+scene.subscene_tabular().insert(subscene_1, subscene_2, False) # no contact
 
 abd = AffineBodyConstitution()
 
@@ -44,10 +47,25 @@ obj = scene.objects().create('cubes')
 t = Transform.Identity()
 t.scale(0.10)
 sio = SimplicialComplexIO(t)
-cube_mesh = sio.read(f'{trimesh_path}/cube.obj')
-abd.apply_to(cube_mesh, 100.0 * MPa)
-label_surface(cube_mesh)
-obj.geometries().create(cube_mesh)
+base_mesh = sio.read(f'{trimesh_path}/cube.obj')
+abd.apply_to(base_mesh, 100.0 * MPa)
+
+label_surface(base_mesh)
+
+
+left = base_mesh.copy()
+t = Transform.Identity()
+t.translate(Vector3.UnitX() * -0.02)
+view(left.transforms())[:] = t.matrix()
+subscene_1.apply_to(left)
+obj.geometries().create(left)
+
+right = base_mesh.copy()
+t = Transform.Identity()
+t.translate(Vector3.UnitX() * 0.02)
+view(right.transforms())[:] = t.matrix()
+subscene_2.apply_to(right)
+obj.geometries().create(right)
 
 g = scene.objects().create('ground')
 g_mesh = ground(-0.15)
