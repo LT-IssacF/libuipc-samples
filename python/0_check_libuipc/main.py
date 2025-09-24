@@ -5,15 +5,9 @@ import asyncio
 from asset_dir import AssetDir
 
 import uipc
-from uipc import Engine, Logger, unit, builtin, Future
-
-def print_sorted(uids):
-    uids = sorted(uids, key=lambda x: x['uid'])
-    for u in uids:
-        uid = u['uid']
-        name = u['name']
-        type = u['type']
-        print(f'uid: {uid}, name: {name}, type: {type}')
+from uipc import (Engine, Logger, 
+                  unit, builtin, dev,
+                  ResidentThread)
 
 if __name__ == '__main__':
     print(f'pyuipc version: {uipc.__version__}')
@@ -21,20 +15,17 @@ if __name__ == '__main__':
     print(f'tetmesh_path: {AssetDir.tetmesh_path()}')
     print(f'trimesh_path: {AssetDir.trimesh_path()}')
     print(f'this file output_path: {AssetDir.output_path(__file__)}')
-
     print()
-    
-    constitutions = builtin.ConstitutionUIDCollection.instance().to_json()
-    implicit_geomeries = builtin.ImplicitGeometryUIDCollection.instance().to_json()
     
     print('* UIPC INFO:')
     print('-'*80)
     print('constitutions:')
-    print_sorted(constitutions)
+    print(dev.ConstitutionUIDInfo())
     print('-'*80)
     print('implicit_geomeries:')
-    print_sorted(implicit_geomeries)
+    print(dev.ImplicitGeometryUIDInfo())
     print('-'*80)
+
     print('units:')
     print(f's={unit.s}')
     print(f'm={unit.m}')
@@ -61,8 +52,10 @@ if __name__ == '__main__':
     symbols = ['|', '/', '-', '\\']
     i = 0
 
-    f = Future.launch(init_engine)
-    while not f.is_ready():
+    rt = ResidentThread()
+
+    rt.post(init_engine)
+    while not rt.is_ready():
         print('Waiting for cuda engine to initialize. ', end='')
         current_time = time.time()
         elapsed_time = current_time - start_time
