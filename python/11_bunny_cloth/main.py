@@ -1,10 +1,10 @@
-import numpy as np
-import polyscope as ps
-from polyscope import imgui
+# import numpy as np
+# import polyscope as ps
+# from polyscope import imgui
 
 import uipc
 from uipc import Logger, Timer, Transform, Quaternion, Vector3, Vector2, view, builtin
-from uipc.core import Engine, World, Scene
+from uipc.core import Engine, World, Scene, SceneIO
 from uipc.geometry import tetmesh, label_surface, label_triangle_orient, flip_inward_triangles
 from uipc.geometry import SimplicialComplexIO
 from uipc.constitution import AffineBodyConstitution, NeoHookeanShell, DiscreteShellBending, ElasticModuli
@@ -29,6 +29,7 @@ config['dt'] = 0.01
 config['contact']['d_hat'] = 0.01
 print(config)
 scene = Scene(config)
+sio = SceneIO(scene)
 
 # begin setup the scene
 cloth = scene.objects().create('cloth')
@@ -63,22 +64,27 @@ bunny.geometries().create(bunny_mesh)
 
 world.init(scene)
 
-ps.init()
-ps.set_ground_plane_height(-1.0)
-sgui = SceneGUI(scene, 'split')
-sgui.register()
-sgui.set_edge_width(1.0)
+# ps.init()
+# ps.set_ground_plane_height(-1.0)
+# sgui = SceneGUI(scene, 'split')
+# sgui.register()
+# sgui.set_edge_width(1.0)
 
-run = False
+# run = False
+run = True
 def on_update():
     global run
-    if(imgui.Button('run & stop')):
-        run = not run
+    # if(imgui.Button('run & stop')):
+    #     run = not run
         
     if(run):
         world.advance()
         world.retrieve()
-        sgui.update()
+        # sgui.update()
 
-ps.set_user_callback(on_update)
-ps.show()
+for frame in range(100):
+    world.advance()
+    world.retrieve()
+    sio.write_surface(f"{workspace}/output_{frame}.obj")
+# ps.set_user_callback(on_update)
+# ps.show()
